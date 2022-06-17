@@ -3,8 +3,34 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+let error = document.getElementById("modal") 
+error.hidden = true;
+let errorMessage = document.getElementById("modal-message")
+errorMessage.textContent = "Random server error. Try again"
 
-
+document.addEventListener("DOMContentLoaded", () =>{
+const likebuttons = document.querySelectorAll("span.like-glyph")
+likebuttons.forEach(likebutton => {
+likebutton.addEventListener("click", function(){
+  //likebutton.classList.toggle("activated-heart");
+  if(likebutton.innerText === FULL_HEART){
+    likebutton.classList.remove("activated-heart")
+    //likebutton.innerText === EMPTY_HEART
+  }else{
+    mimicServerCall()
+.then (() => {
+    likebutton.innerText === EMPTY_HEART
+    likebutton.classList.add("activated-heart")
+  })
+  .catch(() => {
+  setTimeout(() => {
+    error.hidden = false
+  })
+  })
+}
+  })
+})
+})
 
 
 //------------------------------------------------------------------------------
